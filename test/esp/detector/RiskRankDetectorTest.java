@@ -5,11 +5,14 @@ import esp.model.Sector;
 import org.junit.Test;
 
 import java.util.Map;
+import java.util.stream.Stream;
 
+import static esp.TestUtils.coo;
 import static esp.TestUtils.create;
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class RiskRankDetectorTest {
 
@@ -74,5 +77,14 @@ public class RiskRankDetectorTest {
         Map<RiskRank, Long> result = new RiskRankDetector(asList(first, second, third)).detect(sector);
         assertThat(result.get(second), is(2L));
     }
+
+    @Test
+    public void allCoordinatesInRect() throws Exception {
+        Stream.of(coo(0, 0), coo(3, 0), coo(0, 4), coo(3, 4)).forEach(
+                coordinate -> assertTrue("There is not " + coordinate + " in the stream",
+                        RiskRankDetector.allCoordinatesInRect(4, 5).anyMatch(coordinate::equals))
+        );
+    }
+
 
 }

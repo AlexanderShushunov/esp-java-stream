@@ -19,4 +19,20 @@ class Group {
     int size() {
         return cells.size();
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Group group = (Group) o;
+
+        return cells.equals(group.cells);
+    }
+
+    @Override
+    public int hashCode() {
+        return cells.hashCode();
+    }
 }

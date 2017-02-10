@@ -26,10 +26,8 @@ class GroupFinder {
                 .map(direction -> direction.getNeighbor(coordinate))
                 .filter(as(group::inGroup).negate())
                 .filter(coo -> sector.getCell(coo) == HUMAN)
-                .forEach(coo -> {
-                    group.addCell(coo);
-                    find(coo, group);
-                });
+                .peek(group::addCell)
+                .forEach(coo -> find(coo, group));
         return group;
     }
 }
