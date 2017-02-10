@@ -5,7 +5,7 @@ public class Sector {
     private CellState[][] cellsStates;
 
     public Sector(int width, int height) {
-        assert(width > 0 && height > 0);
+        assert (width > 0 && height > 0);
         cellsStates = new CellState[height][width];
     }
 
@@ -32,7 +32,7 @@ public class Sector {
     }
 
     private boolean inBound(Coordinate coordinate) {
-        return coordinate.getX() <  getWidth()
-                && coordinate.getY() < getHeight();
+        return 0 <= coordinate.getX() && coordinate.getX() < getWidth()
+                && 0 <= coordinate.getY() && coordinate.getY() < getHeight();
     }
 }
