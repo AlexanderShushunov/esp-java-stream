@@ -21,10 +21,10 @@ public class RiskRankDetectorTest {
 
     private static final RiskRankDetector STD_RISK_RANK_DETECTOR = new RiskRankDetector(asList(
             NONE,
-            MINOR,
             NORMAL,
-            MAJOR,
-            CRITICAL));
+            MINOR,
+            CRITICAL,
+            MAJOR));
 
     @org.junit.Test
     public void detectStdComplex() throws Exception {

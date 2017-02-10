@@ -3,6 +3,7 @@ package esp.detector;
 import esp.model.RiskRank;
 import esp.model.Sector;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -34,9 +35,10 @@ public class RiskRankDetector {
         return ranks.stream().collect(Collectors.toMap(Function.identity(), smt -> 0L));
     }
 
-    private RiskRank identify(Integer width) {
+    private RiskRank identify(Integer size) {
         return ranks.stream()
-                .filter(rank -> width <= rank.getUpBound())
+                .filter(rank -> size <= rank.getUpBound())
+                .sorted(Comparator.comparingInt(RiskRank::getUpBound))
                 .findFirst()
                 .orElse(ranks.get(0));
     }
