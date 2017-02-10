@@ -2,6 +2,7 @@ package esp.detector;
 
 import esp.model.RiskRank;
 import esp.model.Sector;
+import org.junit.Test;
 
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class RiskRankDetectorTest {
             CRITICAL,
             MAJOR));
 
-    @org.junit.Test
+    @Test
     public void detectStdComplex() throws Exception {
         // @formatter:off
         Sector sector = create(
@@ -47,7 +48,7 @@ public class RiskRankDetectorTest {
         assertThat(result.get(CRITICAL), is(1L));
     }
 
-    @org.junit.Test
+    @Test
     public void detectEmpty() throws Exception {
         // @formatter:off
         Sector sector = create(
@@ -59,7 +60,7 @@ public class RiskRankDetectorTest {
         assertThat(result.values().stream().mapToLong(Long::longValue).sum(), is(0L));
     }
 
-    @org.junit.Test
+    @Test
     public void detectBoundaries() throws Exception {
         // @formatter:off
         Sector sector = create(
@@ -73,4 +74,5 @@ public class RiskRankDetectorTest {
         Map<RiskRank, Long> result = new RiskRankDetector(asList(first, second, third)).detect(sector);
         assertThat(result.get(second), is(2L));
     }
+
 }
