@@ -13,7 +13,7 @@ class SectorToHumanCellListConverter {
 
     List<Coordinate> convert(Sector sector) {
         return IntStream.range(0, sector.getWidth())
-                .mapToObj(x -> x)
+                .boxed()
                 .flatMap(x ->
                         IntStream.range(0, sector.getHeight()).mapToObj(y -> new Coordinate(x, y))
                 ).filter(coo -> sector.getCell(coo) == HUMAN)
